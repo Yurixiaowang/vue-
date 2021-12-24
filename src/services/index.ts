@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { HomeRecommend } from './types'
+import { HomeRecommend, DetailInfo } from './types'
 export default class Services {
   static init() {
     axios.defaults.baseURL = 'https://www.fastmock.site/mock/e200ea8676a01209d5de4aaa1b515353/yuri/'
@@ -9,5 +9,11 @@ export default class Services {
     this.init()
     // 请求回来的结果 res.data 是 HomeRecommend[] 类型的
     return axios.get<HomeRecommend>('recommend').then(res => res.data)
+  }
+
+  // 列表数据
+  static async getListData () {
+    this.init()
+    return axios.get<DetailInfo>('list').then(res => res.data)
   }
 }

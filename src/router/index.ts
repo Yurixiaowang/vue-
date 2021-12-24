@@ -17,7 +17,10 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      depth: 1
+    }
   },
   {
     path: '/list',
@@ -25,12 +28,19 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: List
+    component: List,
+    meta: {
+      depth: 2,
+      keepAlive: true
+    }
   },
   {
     path: '/detail/:id',
     name: RouteNames.Detail,
-    component: Detail
+    component: Detail,
+    meta: {
+      depth: 3
+    }
   }
 ]
 

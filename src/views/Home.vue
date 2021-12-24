@@ -2,7 +2,8 @@
   <div class="home">
     <Slider @tabChange="onTabChange"/>
     <Banner :src='bannerSrc'/>
-    <Recommend />
+    <Recommend v-show="!showVideo"/>
+    <VideoList v-show="showVideo"/>
   </div>
 </template>
 
@@ -11,11 +12,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import Slider from '@/components/Slider.vue'
 import Banner from '@/components/Banner.vue'
 import Recommend from '@/components/Recommend.vue'
+import VideoList from '@/components/VideoList.vue'
 @Component({
   components: {
     Slider,
     Banner,
-    Recommend
+    Recommend,
+    VideoList
   },
 })
 export default class Home extends Vue {
@@ -27,9 +30,11 @@ export default class Home extends Vue {
   ]
 
   bannerSrc: string = this.BANNER_LIST[0]
+  showVideo = false
   
   // 改变 tab 时，banner 随之改变
   onTabChange(idx: number) {
+    this.showVideo = idx === 1 ? true : false
     this.bannerSrc = this.BANNER_LIST[idx]
   }
 }
